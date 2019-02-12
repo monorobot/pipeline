@@ -83,7 +83,7 @@ const (
 	InstallLogging                         = "InstallLogging"
 	InstallServiceMesh                     = "InstallServiceMesh"
 	RegisterDomainPostHook                 = "RegisterDomainPostHook"
-	LabelNodes                             = "LabelNodes"
+	LabelNodesWithNodePoolName             = "LabelNodesWithNodePoolName"
 	TaintHeadNodes                         = "TaintHeadNodes"
 	InstallPVCOperator                     = "InstallPVCOperator"
 	InstallAnchoreImageValidator           = "InstallAnchoreImageValidator"

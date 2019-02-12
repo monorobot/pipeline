@@ -639,6 +639,7 @@ func createEC2ClusterPKENodePoolsFromRequest(pools pke.NodePools, userId uint) i
 			Hosts:          convertHosts(pool.Hosts),
 			Provider:       convertNodePoolProvider(pool.Provider),
 			ProviderConfig: pool.ProviderConfig,
+			Labels:         pool.Labels,
 		}
 		np.CreatedBy = userId
 		nps = append(nps, np)

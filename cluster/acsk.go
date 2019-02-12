@@ -212,6 +212,7 @@ func createACSKNodePoolsFromRequest(pools acsk.NodePools, userId uint) ([]*model
 			MinCount:     pool.MinCount,
 			MaxCount:     pool.MaxCount,
 			Count:        pool.MinCount,
+			Labels:       pool.Labels,
 		}
 		i++
 	}

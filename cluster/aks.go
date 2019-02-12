@@ -70,6 +70,7 @@ func CreateAKSClusterFromRequest(request *pkgCluster.CreateClusterRequest, orgID
 			Count:            np.Count,
 			NodeInstanceType: np.NodeInstanceType,
 			VNetSubnetID:     np.VNetSubnetID,
+			Labels:           np.Labels,
 		})
 	}
 

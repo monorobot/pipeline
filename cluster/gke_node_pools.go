@@ -15,8 +15,6 @@
 package cluster
 
 import (
-	"strconv"
-
 	"github.com/banzaicloud/pipeline/internal/providers/google"
 	pkgClusterGoogle "github.com/banzaicloud/pipeline/pkg/cluster/gke"
 	pkgCommon "github.com/banzaicloud/pipeline/pkg/common"
@@ -43,14 +41,7 @@ func createNodePoolsModelFromRequest(nodePoolsData map[string]*pkgClusterGoogle.
 			NodeCount:        nodePoolData.Count,
 			NodeInstanceType: nodePoolData.NodeInstanceType,
 			Preemptible:      nodePoolData.Preemptible,
-			Labels:           make([]*google.GKENodePoolLabelModel, 0),
-		}
-
-		for name, value := range nodePoolData.Labels {
-			nodePoolsModel[i].Labels = append(nodePoolsModel[i].Labels, &google.GKENodePoolLabelModel{
-				Name:  name,
-				Value: value,
-			})
+			Labels:           nodePoolData.Labels,
 		}
 
 		i++
@@ -71,13 +62,9 @@ func createNodePoolsFromClusterModel(clusterModel *google.GKEClusterModel) ([]*g
 	for i := 0; i < nodePoolsCount; i++ {
 		nodePoolModel := clusterModel.NodePools[i]
 
+		// only add node pool name label, other are added by NodeLabelController
 		labels := map[string]string{
-			pkgCommon.LabelKey:         nodePoolModel.Name,
-			pkgCommon.OnDemandLabelKey: strconv.FormatBool(!nodePoolModel.Preemptible),
-		}
-
-		for _, label := range nodePoolModel.Labels {
-			labels[label.Name] = label.Value
+			pkgCommon.LabelKey: nodePoolModel.Name,
 		}
 
 		nodePools[i] = &gke.NodePool{
