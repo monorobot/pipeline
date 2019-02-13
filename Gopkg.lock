@@ -147,7 +147,7 @@
   revision = "de5bf2ad457846296e2031421a34e2568e304e35"
 
 [[projects]]
-  digest = "1:e0287a471dde40bef7acd33ab1a32de76cc561ec894641c7f7795a33e7f8a61e"
+  digest = "1:835cc6ffee3828a909553c158bd5696b5b96d56465e51a3797f8e2623ff37448"
   name = "github.com/aliyun/alibaba-cloud-sdk-go"
   packages = [
     "sdk",
@@ -162,7 +162,7 @@
     "services/cs",
     "services/ecs",
     "services/ess",
-    "services/vpc"
+    "services/vpc",
   ]
   pruneopts = "NUT"
   revision = "1c5a1c93a9c1e3da49ea0aa1f095a204b075c6b8"
@@ -308,7 +308,7 @@
   revision = "12df4a18567f1e9635135cdc241c6917795e2cc7"
 
 [[projects]]
-  digest = "1:e1bf39beaa2b71b933fec77d2d080278619bc44807cc7e1bcab0e11bdc9f6338"
+  digest = "1:1044eaf6fccb1e2e156e3c0f11bafdb170f92629520fe199ca48504c857ae78a"
   name = "github.com/banzaicloud/nodepool-labels-operator"
   packages = [
     "pkg/apis/nodepoollabelset",
@@ -319,7 +319,7 @@
     "pkg/npls",
   ]
   pruneopts = "NUT"
-  revision = "d7d4b9e83d3e8ca23d1e756744979cd9f32a3ed8"
+  revision = "6db8f536362771547d1933b4fd2fac379e7a2ba5"
   version = "0.0.1"
 
 [[projects]]
@@ -2236,6 +2236,7 @@
     "github.com/aliyun/alibaba-cloud-sdk-go/services/cs",
     "github.com/aliyun/alibaba-cloud-sdk-go/services/ecs",
     "github.com/aliyun/alibaba-cloud-sdk-go/services/ess",
+    "github.com/aliyun/alibaba-cloud-sdk-go/services/vpc",
     "github.com/aliyun/aliyun-oss-go-sdk/oss",
     "github.com/antihax/optional",
     "github.com/aokoli/goutils",
