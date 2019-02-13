@@ -229,7 +229,7 @@ func (o *OKECluster) GetStatus() (*pkgCluster.GetClusterStatusResponse, error) {
 				Image:             np.Image,
 				Version:           np.Version,
 				CreatorBaseFields: *NewCreatorBaseFields(np.CreatedAt, np.CreatedBy),
-				Labels: 		   np.Labels,
+				Labels:            np.Labels,
 			}
 		}
 	}

@@ -78,7 +78,7 @@ func fetchMachineTypes(cloud string, service string, region string) error {
 
 	ciResponse, err := httpClient.Do(ciRequest)
 	if err != nil {
-		return errors.New("error fetching machine types from CloudInfo")
+		return emperror.Wrap(err, "error fetching machine types from CloudInfo")
 	}
 	respBody, _ := ioutil.ReadAll(ciResponse.Body)
 	var vmDetails CloudInfoResponse
@@ -110,7 +110,7 @@ func GetMachineDetails(cloud string, service string, region string, instanceType
 	if !ok {
 		err := fetchMachineTypes(cloud, service, region)
 		if err != nil {
-			return nil, err
+			return nil, emperror.WrapWith(err, "failed to retrieve service machine types", "cloud", cloud, "region", region, "service", service)
 		}
 		vmDetails = instanceTypeMap[vmKey]
 	}

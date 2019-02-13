@@ -610,7 +610,7 @@ func (c *ACSKCluster) GetStatus() (*pkgCluster.GetClusterStatusResponse, error) 
 				MinCount:          np.MinCount,
 				MaxCount:          np.MaxCount,
 				Count:             np.Count,
-				Labels: 		   np.Labels,
+				Labels:            np.Labels,
 			}
 		}
 	}
