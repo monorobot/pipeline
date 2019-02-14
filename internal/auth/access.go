@@ -17,6 +17,7 @@ package auth
 import (
 	"fmt"
 
+	pkgAuth "github.com/banzaicloud/pipeline/pkg/auth"
 	"github.com/casbin/casbin"
 )
 
@@ -55,19 +56,19 @@ func (m *AccessManager) GrantDefaultAccessToVirtualUser(userID string) {
 }
 
 // AddOrganizationPolicies creates an organization role, by adding the default (*) org policies for the given organization.
-func (m *AccessManager) AddOrganizationPolicies(orgID uint) {
+func (m *AccessManager) AddOrganizationPolicies(orgID pkgAuth.OrganizationID) {
 	m.enforcer.AddPolicy(orgRoleName(orgID), fmt.Sprintf("%s/api/v1/orgs/%d", m.basePath, orgID), "*")
 	m.enforcer.AddPolicy(orgRoleName(orgID), fmt.Sprintf("%s/api/v1/orgs/%d/*", m.basePath, orgID), "*")
 	m.enforcer.AddPolicy(orgRoleName(orgID), fmt.Sprintf("%s/dashboard/orgs/%d/*", m.basePath, orgID), "*")
 }
 
 // GrantOrganizationAccessToUser adds a user to an organization by adding the associated organization role.
-func (m *AccessManager) GrantOrganizationAccessToUser(userID string, orgID uint) {
+func (m *AccessManager) GrantOrganizationAccessToUser(userID string, orgID pkgAuth.OrganizationID) {
 	m.enforcer.AddRoleForUser(userID, orgRoleName(orgID))
 }
 
 // RevokeOrganizationAccessFromUser removes a user from an organization by removing the associated organization role.
-func (m *AccessManager) RevokeOrganizationAccessFromUser(userID string, orgID uint) {
+func (m *AccessManager) RevokeOrganizationAccessFromUser(userID string, orgID pkgAuth.OrganizationID) {
 	m.enforcer.DeleteRoleForUser(userID, orgRoleName(orgID))
 }
 
@@ -76,6 +77,6 @@ func (m *AccessManager) RevokeAllAccessFromUser(userID string) {
 	m.enforcer.DeleteUser(userID)
 }
 
-func orgRoleName(orgID uint) string {
+func orgRoleName(orgID pkgAuth.OrganizationID) string {
 	return fmt.Sprint("org-", orgID)
 }
