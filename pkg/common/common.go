@@ -19,7 +19,6 @@ import (
 	"strings"
 	"time"
 
-	pkgErrors "github.com/banzaicloud/pipeline/pkg/errors"
 	"github.com/gin-gonic/gin"
 	"github.com/goph/emperror"
 	"github.com/pkg/errors"
@@ -53,10 +52,6 @@ type NodeNames map[string][]string
 // set by Pipeline and also if these are valid Kubernetes labels
 func ValidateNodePoolLabels(labels map[string]string) error {
 	for name, value := range labels {
-		if strings.Contains(name, PipelineSpecificLabelsCommonPart) {
-			return pkgErrors.ErrorNodePoolLabelClashesWithPipelineLabel
-		}
-
 		// validate node label name
 		errs := validation.IsQualifiedName(name)
 		if len(errs) > 0 {
